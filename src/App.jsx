@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import EmployeeList from './pages/EmployeeList';
 import Error from './pages/Error';
+import './css/style.css';
 
 function App() {
   return (
