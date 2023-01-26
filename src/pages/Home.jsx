@@ -1,7 +1,12 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-date-picker';
 import states from '../data/states';
 
 function Home() {
+  const [dateBirth, changeDateBirth] = useState(new Date());
+  const [dateStart, changeDateStart] = useState(new Date());
+
   return (
     <>
       <div className="title">
@@ -18,10 +23,18 @@ function Home() {
           <input type="text" id="last-name" />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="text" />
+          <DatePicker
+            id="date-of-birth"
+            onChange={changeDateBirth}
+            value={dateBirth}
+          />
 
           <label htmlFor="start-date">Start Date</label>
-          <input id="start-date" type="text" />
+          <DatePicker
+            id="start-date"
+            onChange={changeDateStart}
+            value={dateStart}
+          />
 
           <fieldset className="address">
             <legend>Address</legend>
