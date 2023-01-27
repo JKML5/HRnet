@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-date-picker';
 import states from '../data/states';
+import Header from '../components/Header';
 
 function Home() {
   const [dateBirth, changeDateBirth] = useState(new Date());
@@ -9,6 +10,7 @@ function Home() {
 
   return (
     <>
+      <Header />
       <div className="title">
         <h1>HRnet</h1>
       </div>
