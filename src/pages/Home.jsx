@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-date-picker';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import FormDatePicker from '../components/FormDatePicker';
+import FormInputText from '../components/FormInput';
+import FormLabel from '../components/FormLabel';
 import states from '../data/states';
 
 function Home() {
@@ -14,30 +16,6 @@ function Home() {
     padding-bottom: 20px;
     border-bottom: 2px solid #eeeee;
     margin-bottom: 20px;
-  `;
-
-  const StyledInput = styled.input`
-    font-size: 16px;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid #000000;
-    outline: none;
-    border-radius: 5px;
-
-    &.half-width {
-      width: 50%;
-    }
-
-    &:focus {
-      border: none;
-      outline: 2px solid #4e6701;
-    }
-  `;
-
-  const StyledLabel = styled.label`
-    display: block;
-    margin: 20px 0 10px 0;
   `;
 
   const StyledSelect = styled.select`
@@ -91,33 +69,33 @@ function Home() {
         <StyledTitle>Create employee</StyledTitle>
 
         <form action="#" id="create-employee">
-          <StyledLabel htmlFor="first-name">First Name</StyledLabel>
-          <StyledInput type="text" id="first-name" />
+          <FormLabel htmlFor="first-name" value="First Name" />
+          <FormInputText id="first-name" />
 
-          <StyledLabel htmlFor="last-name">Last Name</StyledLabel>
-          <StyledInput type="text" id="last-name" />
+          <FormLabel htmlFor="first-name" value="Last Name" />
+          <FormInputText id="last-name" />
 
-          <StyledLabel htmlFor="date-of-birth">Date of Birth</StyledLabel>
-          <DatePicker
+          <FormLabel htmlFor="date-of-birth" value="Date of Birth" />
+          <FormDatePicker
             id="date-of-birth"
             onChange={changeDateBirth}
             value={dateBirth}
           />
 
-          <StyledLabel htmlFor="start-date">Start Date</StyledLabel>
-          <DatePicker
+          <FormLabel htmlFor="start-date" value="Start Date" />
+          <FormDatePicker
             id="start-date"
             onChange={changeDateStart}
             value={dateStart}
           />
 
-          <StyledLabel htmlFor="street">Street</StyledLabel>
-          <StyledInput id="street" type="text" />
+          <FormLabel htmlFor="street" value="Street" />
+          <FormInputText id="street" />
 
-          <StyledLabel htmlFor="city">City</StyledLabel>
-          <StyledInput id="city" type="text" />
+          <FormLabel htmlFor="city" value="City" />
+          <FormInputText id="city" />
 
-          <StyledLabel htmlFor="state">State</StyledLabel>
+          <FormLabel htmlFor="state" value="State" />
           <StyledSelect name="state" id="state">
             {states.map((state) => (
               <option key={state.abbreviation} value={state.abbreviation}>
@@ -126,10 +104,10 @@ function Home() {
             ))}
           </StyledSelect>
 
-          <StyledLabel htmlFor="zip-code">Zip Code</StyledLabel>
-          <StyledInput className="half-width" id="zip-code" type="number" />
+          <FormLabel htmlFor="zip-code" value="Zip Code" />
+          <FormInputText id="zip-code" className="half-width" type="number" />
 
-          <StyledLabel htmlFor="department">Department</StyledLabel>
+          <FormLabel htmlFor="department" value="Department" />
           <StyledSelect name="department" id="department">
             <option>Sales</option>
             <option>Marketing</option>
