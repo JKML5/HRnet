@@ -1,3 +1,7 @@
+/**
+* RESET CSS - http://meyerweb.com/eric/tools/css/reset/ 
+*/
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,28 +46,48 @@ table {
 	border-spacing: 0;
 }
 
-/*****************************************************************************/
+/*
+* Border-box
+*/
 
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+* {
+  box-sizing: border-box; /* Opera/IE 8+ */
+  -moz-box-sizing: border-box; /* Firefox, autres Gecko */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, autres WebKit */
 }
 
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/*
+* General
+*/
+body {
+  background-color: #eeeeee;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-size: 16px;
 }
 
-label {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 10px;
+.main {
+  max-width: 800px;
+  background-color: #ffffff;
+  margin: 50px auto;
+  border-radius: 30px;
+  padding: 50px;
 }
 
-.address {
-  margin-top: 10px;
+.modal {
+  display: none;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+/*
+* DatePicker
+*/
+.react-date-picker__wrapper {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #000000;
+  outline: none;
+  border-radius: 5px;
 }

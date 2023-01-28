@@ -1,17 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import logo from '../assets/logo-horizontal.png';
+import Nav from './Nav';
+import Logo from './Logo';
 
 const StyledHeader = styled.header`
-  padding: 20px;
-  font-family: 'Arial', 'Helvetica', sans-serif;
+  background-color: #ffffff;
+  padding: 30px;
   font-size: 18px;
   font-weight: bold;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #000000;
+  border-bottom: 2px solid #4e6701;
 `;
 
 const StyledLink = styled(Link)`
@@ -23,8 +23,8 @@ function Header() {
   return (
     <StyledLink to="/">
       <StyledHeader className="header">
-        <img src={logo} alt="WealthHealth" />
-        <p>- HRnet</p>
+        <Logo />
+        <Nav />
       </StyledHeader>
     </StyledLink>
   );
