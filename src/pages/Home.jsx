@@ -4,7 +4,9 @@ import Button from '../components/Button';
 import FormDatePicker from '../components/FormDatePicker';
 import FormInputText from '../components/FormInput';
 import FormLabel from '../components/FormLabel';
+import FormSelect from '../components/FormSelect';
 import states from '../data/states';
+import departments from '../data/departments';
 
 function Home() {
   const [dateBirth, changeDateBirth] = useState(new Date());
@@ -16,22 +18,6 @@ function Home() {
     padding-bottom: 20px;
     border-bottom: 2px solid #eeeee;
     margin-bottom: 20px;
-  `;
-
-  const StyledSelect = styled.select`
-    font-size: 16px;
-    height: 40px;
-    border: none;
-    outline: 1px solid #000000;
-    border-radius: 5px;
-    background-color: #ffffff;
-    padding: 0 10px;
-    width: 50%;
-
-    &:focus {
-      border: none;
-      outline: 2px solid #4e6701;
-    }
   `;
 
   function saveEmployee() {
@@ -96,25 +82,13 @@ function Home() {
           <FormInputText id="city" />
 
           <FormLabel htmlFor="state" value="State" />
-          <StyledSelect name="state" id="state">
-            {states.map((state) => (
-              <option key={state.abbreviation} value={state.abbreviation}>
-                {state.name}
-              </option>
-            ))}
-          </StyledSelect>
+          <FormSelect name="state" id="state" data={states} />
 
           <FormLabel htmlFor="zip-code" value="Zip Code" />
           <FormInputText id="zip-code" className="half-width" type="number" />
 
           <FormLabel htmlFor="department" value="Department" />
-          <StyledSelect name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </StyledSelect>
+          <FormSelect name="department" id="department" data={departments} />
         </form>
 
         <p className="alignRight">
