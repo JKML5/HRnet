@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Button from '../components/Button';
 import FormDatePicker from '../components/FormDatePicker';
 import FormInputText from '../components/FormInput';
@@ -7,52 +7,34 @@ import FormLabel from '../components/FormLabel';
 import FormSelect from '../components/FormSelect';
 import states from '../data/states';
 import departments from '../data/departments';
+import Title from '../components/Title';
 
-function Home() {
+function Home({ employees, setEmployees }) {
   const [dateBirth, changeDateBirth] = useState(new Date());
   const [dateStart, changeDateStart] = useState(new Date());
 
-  const StyledTitle = styled.h1`
-    font-size: 24px;
-    font-weight: bold;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #eeeee;
-    margin-bottom: 20px;
-  `;
-
   function saveEmployee() {
-    console.log('saveEmployee');
-    // const firstName = document.getElementById('first-name');
-    // const lastName = document.getElementById('last-name');
-    // const dateOfBirth = document.getElementById('date-of-birth');
-    // const startDate = document.getElementById('start-date');
-    // const department = document.getElementById('department');
-    // const street = document.getElementById('street');
-    // const city = document.getElementById('city');
-    // const state = document.getElementById('state');
-    // const zipCode = document.getElementById('zip-code');
+    const employee = {
+      firstName: document.getElementById('first-name').value,
+      lastName: document.getElementById('last-name').value,
+      dateBirth,
+      dateStart,
+      street: document.getElementById('street').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      zipCode: document.getElementById('zip-code').value,
+      department: document.getElementById('department').value,
+    };
 
-    // const employees = JSON.parse(localStorage.getItem('employees')) || [];
-    // const employee = {
-    //   firstName: firstName.value,
-    //   lastName: lastName.value,
-    //   dateOfBirth: dateOfBirth.value,
-    //   startDate: startDate.value,
-    //   department: department.value,
-    //   street: street.value,
-    //   city: city.value,
-    //   state: state.value,
-    //   zipCode: zipCode.value,
-    // };
-    // employees.push(employee);
-    // localStorage.setItem('employees', JSON.stringify(employees));
+    setEmployees([...employees, employee]);
+
     // $('#confirmation').modal();
   }
 
   return (
     <>
       <main className="main">
-        <StyledTitle>Create employee</StyledTitle>
+        <Title value="Create employee" />
 
         <form action="#" id="create-employee">
           <FormLabel htmlFor="first-name" value="First Name" />
@@ -102,5 +84,10 @@ function Home() {
     </>
   );
 }
+
+Home.propTypes = {
+  employees: PropTypes.string.isRequired,
+  setEmployees: PropTypes.func.isRequired,
+};
 
 export default Home;

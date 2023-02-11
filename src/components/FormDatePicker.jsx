@@ -1,3 +1,7 @@
+/**
+ * @see https://projects.wojtekmaj.pl/react-date-picker/
+ */
+
 import PropTypes from 'prop-types';
 import DatePicker from 'react-date-picker';
 
@@ -14,7 +18,7 @@ FormDatePicker.defaultProps = {
 FormDatePicker.propTypes = {
   id: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.instanceOf(Date),
 };
 
 export default FormDatePicker;

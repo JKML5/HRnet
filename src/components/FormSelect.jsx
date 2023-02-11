@@ -1,3 +1,6 @@
+/**
+ * Sort & show options value for selectbox
+ */
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -18,16 +21,14 @@ function FormSelect({ id, name, data }) {
     }
   `;
 
-  let sortedValues;
-  if (typeof data[0] === 'string') {
-    sortedValues = data.sort();
-  } else {
-    sortedValues = data.sort((a, b) => {
-      if (Object.values(a)[0] < Object.values(b)[0]) return -1;
-      if (Object.values(a)[0] > Object.values(b)[0]) return 1;
-      return 0;
-    });
-  }
+  const sortedValues =
+    typeof data[0] === 'string'
+      ? data.sort()
+      : data.sort((a, b) => {
+          if (Object.values(a)[0] < Object.values(b)[0]) return -1;
+          if (Object.values(a)[0] > Object.values(b)[0]) return 1;
+          return 0;
+        });
 
   function getOption(optionData) {
     return typeof optionData === 'string' ? (
