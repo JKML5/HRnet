@@ -8,10 +8,20 @@ import FormSelect from '../components/FormSelect';
 import states from '../data/states';
 import departments from '../data/departments';
 import Title from '../components/Title';
+import Modal from '../components/Modal';
 
 function Home({ employees, setEmployees }) {
   const [dateBirth, changeDateBirth] = useState(new Date());
   const [dateStart, changeDateStart] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   function saveEmployee() {
     const employee = {
@@ -28,7 +38,8 @@ function Home({ employees, setEmployees }) {
 
     setEmployees([...employees, employee]);
 
-    // $('#confirmation').modal();
+    // Confirmation message
+    handleOpenModal();
   }
 
   return (
@@ -78,8 +89,12 @@ function Home({ employees, setEmployees }) {
         </p>
       </main>
 
-      <div id="confirmation" className="modal">
-        Employee Created!
+      <div>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title="Employee Created!"
+        />
       </div>
     </>
   );
