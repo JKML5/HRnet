@@ -12,7 +12,7 @@ function Button({ value, onClick }) {
   `;
 
   return (
-    <StyledButton type="button" onClick={onClick}>
+    <StyledButton type="submit" onClick={onClick}>
       {value}
     </StyledButton>
   );

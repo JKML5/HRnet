@@ -1,39 +1,52 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function FormInput({ id, className, type }) {
-  const StyledInput = styled.input`
-    font-size: 16px;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid #000000;
-    outline: none;
-    border-radius: 5px;
+function FormInput({ id, name, type, onChange, value }) {
+  // const StyledInput = styled.input`
+  //   font-size: 16px;
+  //   width: 100%;
+  //   height: 40px;
+  //   padding: 0 10px;
+  //   border: 1px solid #000000;
+  //   outline: none;
+  //   border-radius: 5px;
 
-    &.half-width {
-      width: 50%;
-    }
+  //   &.half-width {
+  //     width: 50%;
+  //   }
 
-    &:focus {
-      border: none;
-      outline: 2px solid #4e6701;
-    }
-  `;
+  //   &:focus {
+  //     border: none;
+  //     outline: 2px solid #4e6701;
+  //   }
+  // `;
 
-  return <StyledInput type={type} id={id} className={className} />;
+  return (
+    <input
+      type={type}
+      id={id}
+      name={name}
+      onChange={onChange}
+      value={value}
+      autoComplete="off"
+    />
+  );
 }
 
 FormInput.defaultProps = {
   id: '',
-  className: '',
+  name: '',
   type: 'text',
+  onChange: () => {},
+  value: '',
 };
 
 FormInput.propTypes = {
   id: PropTypes.string,
-  className: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default FormInput;

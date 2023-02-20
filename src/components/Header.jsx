@@ -21,12 +21,12 @@ const StyledLink = styled(Link)`
 
 function Header() {
   return (
-    <StyledLink to="/">
-      <StyledHeader className="header">
+    <StyledHeader className="header">
+      <StyledLink to="/">
         <Logo />
-        <Nav />
-      </StyledHeader>
-    </StyledLink>
+      </StyledLink>
+      <Nav />
+    </StyledHeader>
   );
 }
 
