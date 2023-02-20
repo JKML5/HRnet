@@ -1,5 +1,6 @@
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import '../css/FormInput.css';
 
 function FormInput({ id, name, type, onChange, value }) {
   // const StyledInput = styled.input`
@@ -25,10 +26,10 @@ function FormInput({ id, name, type, onChange, value }) {
     <input
       type={type}
       id={id}
+      className="inputText"
       name={name}
       onChange={onChange}
       value={value}
-      autoComplete="off"
     />
   );
 }
