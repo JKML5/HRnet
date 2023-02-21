@@ -1,5 +1,6 @@
 {
-  "name": "14-hrnett",
+  "name": "14-hrnet",
+  "homepage": "/HRnet",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
