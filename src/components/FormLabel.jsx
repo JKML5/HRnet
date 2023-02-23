@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-function FormLabel({ htmlFor, value }) {
-  const StyledLabel = styled.label`
-    display: block;
-    margin: 20px 0 10px 0;
-  `;
+const StyledLabel = styled.label`
+  display: block;
+  margin: 20px 0 10px 0;
+`;
 
+function FormLabel({ htmlFor, value }) {
   return <StyledLabel htmlFor={htmlFor}>{value}</StyledLabel>;
 }
 

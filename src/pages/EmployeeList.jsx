@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Title from '../components/Title';
 
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+`;
+
+const StyledRow = styled.tr`
+  border-bottom: 1px solid #ebedf3;
+`;
+
+const StyledTh = styled.th`
+  color: #b5b5c3;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+  padding: 15px 0;
+`;
+
+const StyledTd = styled.td`
+  padding: 15px 0;
+`;
+
 function EmployeeList({ employees }) {
-  const StyledTable = styled.table`
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  `;
-
-  const StyledRow = styled.tr`
-    border-bottom: 1px solid #ebedf3;
-  `;
-
-  const StyledTh = styled.th`
-    color: #b5b5c3;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: 700;
-    padding: 15px 0;
-  `;
-
-  const StyledTd = styled.td`
-    padding: 15px 0;
-  `;
-
   return (
     <main className="main">
       <Title value="Current Employees" />

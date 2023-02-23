@@ -14,14 +14,20 @@ function Home({ employees, setEmployees }) {
   const [formError, setFormError] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [dateBirth, changeDateBirth] = useState(new Date());
-  const [dateStart, changeDateStart] = useState(new Date());
+  const [dateBirth, setDateBirth] = useState(new Date());
+  const [dateStart, setDateStart] = useState(new Date());
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
-  const [state, changeState] = useState('');
-  const [zipCode, changeZipCode] = useState('');
-  const [department, changeDepartment] = useState('');
+  const [state, setState] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [department, setDepartment] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -33,7 +39,7 @@ function Home({ employees, setEmployees }) {
 
   function saveEmployee(event) {
     event.preventDefault();
-
+    console.log(state);
     if (!firstName) {
       setFormError('Please enter a first name');
       return;
@@ -56,15 +62,18 @@ function Home({ employees, setEmployees }) {
 
     if (!state) {
       setFormError('Please select a state');
+      return;
     }
 
     if (!zipCode) {
       setFormError('Please enter a zip code');
+      return;
     }
 
-    if (!department) {
-      setFormError('Please select a department');
-    }
+    // if (!department) {
+    //   setFormError('Please select a department');
+    //   return;
+    // }
 
     const employee = {
       firstName,
@@ -98,30 +107,33 @@ function Home({ employees, setEmployees }) {
             value={firstName}
           />
 
-          <FormLabel htmlFor="last-name" value="Last Name" />
+          <FormLabel htmlFor="lastName" value="Last Name" />
           <FormInputText
-            id="last-name"
+            id="lastName"
+            name="lastName"
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
           />
 
-          <FormLabel htmlFor="date-of-birth" value="Date of Birth" />
+          <FormLabel htmlFor="dateBirth" value="Date of Birth" />
           <FormDatePicker
-            id="date-of-birth"
-            onChange={changeDateBirth}
+            id="dateBirth"
+            name="dateBirth"
+            onChange={setDateBirth}
             value={dateBirth}
           />
 
-          <FormLabel htmlFor="start-date" value="Start Date" />
+          <FormLabel htmlFor="startDate" value="Start Date" />
           <FormDatePicker
-            id="start-date"
-            onChange={changeDateStart}
+            id="startDate"
+            onChange={setDateStart}
             value={dateStart}
           />
 
           <FormLabel htmlFor="street" value="Street" />
           <FormInputText
             id="street"
+            name="street"
             onChange={(e) => setStreet(e.target.value)}
             value={street}
           />
@@ -129,36 +141,46 @@ function Home({ employees, setEmployees }) {
           <FormLabel htmlFor="city" value="City" />
           <FormInputText
             id="city"
+            name="city"
             onChange={(e) => setCity(e.target.value)}
             value={city}
           />
 
           <FormLabel htmlFor="state" value="State" />
           <FormSelect
-            name="state"
             id="state"
+            name="state"
             data={states}
-            onChange={changeState}
+            onChange={setState}
             value={state}
           />
 
-          <FormLabel htmlFor="zip-code" value="Zip Code" />
+          <FormLabel htmlFor="zipCode" value="Zip Code" />
           <FormInputText
-            id="zip-code"
-            className="half-width"
-            type="number"
-            onChange={changeZipCode}
+            id="zipCode"
+            name="zipCode"
+            onChange={(e) => setZipCode(e.target.value)}
             value={zipCode}
           />
 
           <FormLabel htmlFor="department" value="Department" />
           <FormSelect
-            name="department"
             id="department"
+            name="department"
             data={departments}
-            onChange={changeDepartment}
+            onChange={setDepartment}
             value={department}
           />
+
+          <div>
+            <select value={selectedValue} onChange={handleSelectChange}>
+              <option value="">--Choisir une option--</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+            <p>Option sélectionnée : {selectedValue}</p>
+          </div>
 
           {formError && <p className="error">{formError}</p>}
 
