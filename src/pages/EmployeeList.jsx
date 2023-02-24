@@ -64,7 +64,7 @@ function EmployeeList({ employees }) {
 }
 
 EmployeeList.propTypes = {
-  employees: PropTypes.arrayOf(PropTypes.string).isRequired,
+  employees: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default EmployeeList;

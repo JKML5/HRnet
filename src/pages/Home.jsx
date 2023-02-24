@@ -23,12 +23,6 @@ function Home({ employees, setEmployees }) {
   const [department, setDepartment] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedValue, setSelectedValue] = useState('');
-
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -39,7 +33,7 @@ function Home({ employees, setEmployees }) {
 
   function saveEmployee(event) {
     event.preventDefault();
-    console.log(state);
+
     if (!firstName) {
       setFormError('Please enter a first name');
       return;
@@ -70,10 +64,10 @@ function Home({ employees, setEmployees }) {
       return;
     }
 
-    // if (!department) {
-    //   setFormError('Please select a department');
-    //   return;
-    // }
+    if (!department) {
+      setFormError('Please select a department');
+      return;
+    }
 
     const employee = {
       firstName,
@@ -151,7 +145,7 @@ function Home({ employees, setEmployees }) {
             id="state"
             name="state"
             data={states}
-            onChange={setState}
+            onChange={(e) => setState(e.target.value)}
             value={state}
           />
 
@@ -168,19 +162,9 @@ function Home({ employees, setEmployees }) {
             id="department"
             name="department"
             data={departments}
-            onChange={setDepartment}
+            onChange={(e) => setDepartment(e.target.value)}
             value={department}
           />
-
-          <div>
-            <select value={selectedValue} onChange={handleSelectChange}>
-              <option value="">--Choisir une option--</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </select>
-            <p>Option sélectionnée : {selectedValue}</p>
-          </div>
 
           {formError && <p className="error">{formError}</p>}
 
@@ -202,7 +186,7 @@ function Home({ employees, setEmployees }) {
 }
 
 Home.propTypes = {
-  employees: PropTypes.arrayOf(PropTypes.string).isRequired,
+  employees: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   setEmployees: PropTypes.func.isRequired,
 };
 
