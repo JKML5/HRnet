@@ -9,7 +9,7 @@ const StyledLogo = styled.div`
 function Logo() {
   return (
     <StyledLogo>
-      <img src={logo} alt="WealthHealth" />
+      <img src={logo} alt="WealthHealth" width="250" height="43" />
       <p>- HRnet</p>
     </StyledLogo>
   );

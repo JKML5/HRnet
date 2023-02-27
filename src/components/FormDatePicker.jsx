@@ -6,7 +6,15 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-date-picker';
 
 function FormDatePicker({ id, onChange, value }) {
-  return <DatePicker id={id} onChange={onChange} value={value} />;
+  return (
+    <DatePicker
+      id={id}
+      onChange={onChange}
+      value={value}
+      clearAriaLabel="Clear date"
+      calendarAriaLabel="Show calendar"
+    />
+  );
 }
 
 FormDatePicker.defaultProps = {
