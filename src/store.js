@@ -18,7 +18,7 @@ function reducer(state = initialState, action = null) {
     case 'addEmployee ':
       return {
         ...state,
-        employees: action.employees,
+        employees: [...state.employees, action.employee],
       };
     default:
       return state;
