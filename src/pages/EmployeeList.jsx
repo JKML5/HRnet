@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useTable, useGlobalFilter, useSortBy } from 'react-table';
+import {
+  useTable,
+  useGlobalFilter,
+  useSortBy,
+  usePagination,
+} from 'react-table';
 import Title from '../components/Title';
 
 const StyledHeading = styled.div`
@@ -20,6 +25,7 @@ const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  margin-bottom: 20px;
 `;
 
 const StyledRow = styled.tr`
@@ -40,7 +46,7 @@ const StyledTd = styled.td`
 
 function EmployeeList() {
   const employees = useSelector((state) => state.employees);
-  console.log(employees);
+
   const columns = React.useMemo(
     () => [
       {
@@ -96,13 +102,28 @@ function EmployeeList() {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     prepareRow,
-    state,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
     setGlobalFilter,
-  } = useTable({ columns, data: employees }, useGlobalFilter, useSortBy);
-
-  const { globalFilter } = state;
+    state: { pageIndex, pageSize, globalFilter },
+  } = useTable(
+    {
+      columns,
+      data: employees,
+      initialState: { pageIndex: 0 },
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
 
   return (
     <main className="main">
@@ -140,8 +161,9 @@ function EmployeeList() {
               </StyledRow>
             ))}
           </thead>
+
           <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
+            {page.map((row) => {
               prepareRow(row);
               return (
                 <StyledRow {...row.getRowProps()}>
@@ -155,6 +177,68 @@ function EmployeeList() {
             })}
           </tbody>
         </StyledTable>
+        <div className="pagination">
+          <button
+            type="button"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
+            {'<<'}
+          </button>{' '}
+          <button
+            type="button"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            {'<'}
+          </button>{' '}
+          <button
+            type="button"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            {'>'}
+          </button>{' '}
+          <button
+            type="button"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {'>>'}
+          </button>{' '}
+          <span>
+            Page{' '}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{' '}
+          </span>
+          <span>
+            | Go to page:{' '}
+            <input
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const selectedPage = e.target.value
+                  ? Number(e.target.value) - 1
+                  : 0;
+                gotoPage(selectedPage);
+              }}
+              style={{ width: '100px' }}
+            />
+          </span>{' '}
+          <select
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 20, 30, 40, 50].map((selectedPageSize) => (
+              <option key={selectedPageSize} value={selectedPageSize}>
+                Show {selectedPageSize}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </main>
   );
