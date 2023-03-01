@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import FormSelect from 'jk-oc-form-select/dist/FormSelect';
 import Button from '../components/Button';
 import FormDatePicker from '../components/FormDatePicker';
@@ -9,8 +9,11 @@ import states from '../data/states';
 import departments from '../data/departments';
 import Title from '../components/Title';
 import Modal from '../components/Modal';
+import { addEmployee } from '../store';
 
-function Home({ employees, setEmployees }) {
+function Home() {
+  const dispatch = useDispatch();
+
   const [formError, setFormError] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -81,7 +84,8 @@ function Home({ employees, setEmployees }) {
       department,
     };
 
-    setEmployees([...employees, employee]);
+    // Add employee to the list
+    dispatch(addEmployee(employee));
 
     // Confirmation message
     handleOpenModal();
@@ -184,10 +188,5 @@ function Home({ employees, setEmployees }) {
     </>
   );
 }
-
-Home.propTypes = {
-  employees: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  setEmployees: PropTypes.func.isRequired,
-};
 
 export default Home;

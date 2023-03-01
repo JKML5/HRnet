@@ -1,9 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import Title from '../components/Title';
+
+const StyledHeading = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const StyledInputSearch = styled.input`
+  font-size: 14px;
+  padding: 0 20px;
+  height: 50px;
+`;
 
 const StyledTable = styled.table`
   width: 100%;
@@ -27,7 +38,9 @@ const StyledTd = styled.td`
   padding: 15px 0;
 `;
 
-function EmployeeList({ employees }) {
+function EmployeeList() {
+  const employees = useSelector((state) => state.employees);
+  console.log(employees);
   const columns = React.useMemo(
     () => [
       {
@@ -93,13 +106,15 @@ function EmployeeList({ employees }) {
 
   return (
     <main className="main">
-      <Title value="Current Employees" />
-      <input
-        type="text"
-        placeholder="Search..."
-        value={globalFilter || ''}
-        onChange={(e) => setGlobalFilter(e.target.value)}
-      />
+      <StyledHeading>
+        <Title value="Current Employees" />
+        <StyledInputSearch
+          type="text"
+          placeholder="Search..."
+          value={globalFilter || ''}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+        />
+      </StyledHeading>
 
       <div id="employee-div" className="container">
         <StyledTable
@@ -140,14 +155,9 @@ function EmployeeList({ employees }) {
             })}
           </tbody>
         </StyledTable>
-        <Link to="/">Home</Link>
       </div>
     </main>
   );
 }
-
-EmployeeList.propTypes = {
-  employees: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-};
 
 export default EmployeeList;
